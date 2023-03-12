@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Inc, Dec } from "./states/reducers/index";
+import "./App.css";
 
 function App() {
+  const curState = useSelector((state) => state.number.value);
+  const dispatch = useDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Redux Example</h2>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <h3>{curState}</h3>
+      </div>
+      {/* <button onClick={() => dispatch(Inc())}>INC</button> */}
+      {/* <button onClick={() => dispatch(Dec())}>DEC</button> */}
+      <button aria-label="Increment value" onClick={() => dispatch(Inc(10))}>
+        Increment
+      </button>
+      <button aria-label="Increment value" onClick={() => dispatch(Dec(5))}>
+        Decrement
+      </button>
     </div>
   );
 }
